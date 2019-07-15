@@ -17,6 +17,8 @@ export const UPDATE_AUTHOR_FIRST = "UPDATE_AUTHOR_FIRST";
 export const ADD_INGREDIENT = "UPDATE_INGREDIENT";
 export const ADD_INSTRUCTION = "ADD_INSTRUCTION";
 export const ADD_RECIPE = "ADD_RECIPE";
+export const CLEAR_INPUTS = "CLEAR_INPUTS";
+export const DELETE_CARD = "DELETE_CARD";
 
 function reducer(state = initialState, action) {
     const { type, payload } = action;
@@ -38,6 +40,10 @@ function reducer(state = initialState, action) {
             const recipe = { name, category, authorFirst, authorLast, ingredients, instructions};
             const newRecipes = [...state.recipes, recipe];
             return { ...state, recipes: newRecipes };
+        case CLEAR_INPUTS:
+            return {...state, name: '', category: '', authorFirst: '', authorLast: '', ingredients: [], instructions: []}
+        case DELETE_CARD:
+            return {...state, recipes: payload }
         default:
             return state;
     }
